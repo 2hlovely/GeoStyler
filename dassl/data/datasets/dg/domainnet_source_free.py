@@ -30,6 +30,7 @@ class DomainNet_SF(DatasetBase):
     def __init__(self, cfg,train_data):
         root = osp.abspath(osp.expanduser(cfg.DATASET.ROOT))
         self.dataset_dir = osp.join(root, self.dataset_dir)
+        self.image_dir = osp.join(self.dataset_dir, "images")
         self.split_dir = osp.join(self.dataset_dir, "splits")
 
         self.check_input_domains(
@@ -71,9 +72,23 @@ class DomainNet_SF(DatasetBase):
                 lines = f.readlines()
                 for line in lines:
                     line = line.strip()
-                    impath, label = line.split(" ")
-                    classname = impath.split("/")[1]
-                    impath = osp.join(self.dataset_dir, "images", impath)
+                    relative_path, label = line.rsplit(maxsplit=1)
+                    path_parts = relative_path.split("/")
+                    if len(path_parts) < 3:
+                        raise ValueError(
+                            "Invalid DomainNet path '{}' in {}".format(
+                                relative_path, split_file
+                            )
+                        )
+                    classname = path_parts[1]
+                    impath = osp.join(
+                        self.image_dir, relative_path.replace("/", osp.sep)
+                    )
+                    if not osp.isfile(impath):
+                        raise FileNotFoundError(
+                            "DomainNet split entry does not exist: '{}' "
+                            "(from {})".format(impath, split_file)
+                        )
                     label = int(label)
                     item = Datum(
                         impath=impath,
