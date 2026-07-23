@@ -54,7 +54,9 @@ class OfficeHomeDG_SF(DatasetBase):
             items_ = []
 
             for label, folder in enumerate(folders):
-                impaths = glob.glob(osp.join(directory, folder, "*.jpg"))
+                impaths = sorted(
+                    glob.glob(osp.join(directory, folder, "*.jpg"))
+                )
 
                 for impath in impaths:
                     items_.append((impath, label))
@@ -69,8 +71,12 @@ class OfficeHomeDG_SF(DatasetBase):
                 val_dir = osp.join(dataset_dir, dname, "val")
                 train_items = _load_data_from_directory(train_dir)
                 val_items = _load_data_from_directory(val_dir)
-                #impath_label_list = train_items + val_items
-                impath_label_list = val_items
+                # Source-free evaluation uses every image in the target domain.
+                # The OfficeHome layout calls the held-out partition "val", so
+                # both directories must be combined to cover the full dataset.
+                impath_label_list = train_items + val_items
+            else:
+                raise ValueError("Unsupported OfficeHome split: {}".format(split))
 
             for impath, label in impath_label_list:
                 class_name = impath.split("/")[-2].lower()
