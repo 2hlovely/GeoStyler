@@ -3,7 +3,7 @@ SCRIPT_DIR=$(cd "$(dirname "$0")" && pwd)
 cd "${SCRIPT_DIR}/.." || exit 1
 
 
-DATASET_ROOT=/mnt/a/cs_ai_wys/Marui/Data4DG
+DATASET_ROOT=/path/to/datasets
 DATASET=vlcs
 NET=resnet50_clip
 DATASET_YAML=vlcs_source_free
