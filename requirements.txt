@@ -1,0 +1,11 @@
+torch>=1.12.1,<2.0
+torchvision>=0.13.1,<0.15
+numpy>=1.21,<2.0
+Pillow>=9.0,<10.0
+scikit-learn>=1.0,<1.4
+tensorboard>=2.10,<2.14
+tqdm>=4.64,<5.0
+tabulate>=0.8,<1.0
+yacs==0.1.8
+gdown>=4.5,<5.0
+git+https://github.com/openai/CLIP.git@a1d071733d7111c9c014f024669f959182114e33
