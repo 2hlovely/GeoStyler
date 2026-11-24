@@ -14,7 +14,7 @@ DOMAINS=(art_painting cartoon photo sketch)
 DATASET_NAME=PACS_SF
 
 for SEED in 1 2 3; do
-  OUT_DIR=outputTTA/${DATASET}/${NET}/PS_re_train_style/seed${SEED}
+  OUT_DIR=output/${DATASET}/${NET}/PS_re_train_style/seed${SEED}
 
   I2_EPOCHS=100
 
