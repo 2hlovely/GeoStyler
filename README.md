@@ -1,6 +1,8 @@
 # Official implementations of GeoStyler
 (2026 TMM) Optimal Geometric Style Distribution with Adaptive Inference for Zero-Shot Domain Generalization
 
+![GeoStyler framework](images/Pipeline.png)
+
 ## How to run
 
 ### Installation
@@ -26,6 +28,8 @@ Place the datasets under a common root directory and use the layouts expected by
 | VLCS | `VLCS/<domain>/{train,crossval,test}/<class>/` |
 | OfficeHome | `office_home_dg/<domain>/{train,val}/<class>/` |
 | DomainNet | `domainnet/images/<domain>/<class>/` and `domainnet/splits/<domain>_{train,test}.txt` |
+
+![Benchmark datasets](images/Benchmarks.png)
 
 Set `DATASET_ROOT` to this root directory and `DEVICE` to the GPU index in both the training and test scripts.
 
