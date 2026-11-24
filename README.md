@@ -1,4 +1,4 @@
-# GeoStyler
+# Official implementations of GeoStyler
 (2026 TMM) Optimal Geometric Style Distribution with Adaptive Inference for Zero-Shot Domain Generalization
 
 ## How to run
